@@ -39,5 +39,5 @@ nltk.download('wordnet')
 
 * Run through terminal
 ```
-python chatbot.py
+python bubli.py
 ```
