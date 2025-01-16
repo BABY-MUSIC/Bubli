@@ -13,6 +13,7 @@ from telegram.ext import (
     filters,
 )
 from sklearn.feature_extraction.text import TfidfVectorizer  # Add this import
+from sklearn.metrics.pairwise import cosine_similarity
 
 # NLTK Setup
 nltk.download('popular', quiet=True)
