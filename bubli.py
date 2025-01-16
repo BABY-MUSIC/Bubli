@@ -12,6 +12,7 @@ from telegram.ext import (
     ContextTypes,
     filters,
 )
+from sklearn.feature_extraction.text import TfidfVectorizer  # Add this import
 
 # NLTK Setup
 nltk.download('popular', quiet=True)
@@ -136,7 +137,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Main function to start the bot
 def main():
     # Telegram bot token
-    TOKEN = "7561329328:AAELQQNBhe3UJRsAzVqspnHxuysbAQB4NHg"
+    TOKEN = "YOUR_BOT_TOKEN"
 
     # Create the application
     app = ApplicationBuilder().token(TOKEN).build()
