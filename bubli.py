@@ -4,7 +4,7 @@ import string
 import re
 from datetime import datetime
 import nltk
-from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext
+from telegram.ext import CallbackContext
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
