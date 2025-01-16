@@ -4,10 +4,6 @@ import string
 import re
 from datetime import datetime
 import nltk
-from telegram.ext import CallbackContext
-
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 from telegram import Update
 from telegram.ext import (
     ApplicationBuilder,
@@ -127,15 +123,15 @@ def response(user_response):
         return sent_tokens[idx]
 
 # Telegram Bot Handlers
-def start(update: Update, context: CallbackContext):
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Send a welcome message."""
-    update.message.reply_text("Namaste! Humra naam Bubli hai. Kaise madad kari? 😊")
+    await update.message.reply_text("Namaste! Humra naam Bubli hai. Kaise madad kari? 😊")
 
-def handle_message(update: Update, context: CallbackContext):
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle user messages."""
     user_message = update.message.text
     bot_response = response(user_message)
-    update.message.reply_text(bot_response)
+    await update.message.reply_text(bot_response)
 
 # Main function to start the bot
 def main():
@@ -152,3 +148,6 @@ def main():
     # Start the bot
     print("Bot is running...")
     app.run_polling()
+
+if __name__ == '__main__':
+    main()
