@@ -7,7 +7,13 @@ import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import (
+    ApplicationBuilder,
+    CommandHandler,
+    MessageHandler,
+    ContextTypes,
+    filters,
+)
 
 # NLTK Setup
 nltk.download('popular', quiet=True)
@@ -134,17 +140,13 @@ def main():
     # Telegram bot token
     TOKEN = "7561329328:AAELQQNBhe3UJRsAzVqspnHxuysbAQB4NHg"
 
-    # Setting up the bot
-    updater = Updater(TOKEN)
-    dispatcher = updater.dispatcher
+    # Create the application
+    app = ApplicationBuilder().token(TOKEN).build()
 
     # Adding handlers
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-    # Starting the bot
-    updater.start_polling()
-    updater.idle()
-
-if __name__ == "__main__":
-    main()
+    # Start the bot
+    print("Bot is running...")
+    app.run_polling()
